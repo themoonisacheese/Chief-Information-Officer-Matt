@@ -25,7 +25,9 @@ fs.watchFile(address, function() { //wait 1 sec for all files to be updated.
     console.error("Cannot find the #" + channelname + " channel in the " + guildname + " guild!");
     return;
   }
-  channel.send("New winner: " + fs.readFileSync(address));
+  channel.send("**New winner:** " + fs.readFileSync(address) + "\n\
+Balance: " + fs.readFileSync(balance) + "\n\
+Transaction ID: " + fs.readFileSync(txid));
 });
 
 bot.login(token);
