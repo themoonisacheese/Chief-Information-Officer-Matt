@@ -19,14 +19,13 @@ if (prod) {
 }
 
 
-fs.watch(address, setTimeout(function() { //wait 1 sec for all files to be updated.
+fs.watchFile(address, function() { //wait 1 sec for all files to be updated.
   const channel = bot.guilds.find('name', guildname).channels.find('name', channelname);
   if (!channel) {
     console.error("Cannot find the #" + channelname + " channel in the " + guildname + " guild!");
     return;
   }
   channel.send("New winner: " + fs.readFileSync(address));
-}, 1000)
-);
+});
 
 bot.login(token);
