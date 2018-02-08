@@ -5,11 +5,11 @@ var util = require('util');
 
 const bot = new Discord.Client();
 const token = JSON.parse(fs.readFileSync('token.json','utf-8')).token;
-const guildname = 'EmojiBot support';
-const channelname = 'winners';
-const address = 'address.txt';
-const balance = 'balance.txt';
-const txid = 'txid.txt';
+var guildname = 'EmojiBot support';
+var channelname = 'winners';
+var address = 'address.txt';
+var balance = 'balance.txt';
+var txid = 'txid.txt';
 
 if (prod) {
   guildname = 'Garlic, Inc.';
