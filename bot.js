@@ -1,4 +1,4 @@
-const prod = false; //WHEN USING IN PROD, CHANGE THIS TO TRUE TO SET ALL VARIABLES TO THE NEW ENVIRONMENT
+const prod = true; //WHEN USING IN PROD, CHANGE THIS TO TRUE TO SET ALL VARIABLES TO THE NEW ENVIRONMENT
 const Discord = require('discord.js');
 var fs = require('fs');
 var util = require('util');
@@ -18,16 +18,23 @@ if (prod) {
   txid = '/root/unomp/website/pages/' + txid;
 }
 
+bot.once('ready', ()=> {
+  fs.watchFile(address, function() {
+    const channel = bot.guilds.find('name', guildname).channels.find('name', channelname);
+    if (!channel) {
+      console.error("Cannot find the #" + channelname + " channel in the " + guildname + " guild!");
+      return;
+    }
+    channel.send("**New winner:** " + fs.readFileSync(address) + "\n\
+  Balance: " + fs.readFileSync(balance) + "\n\
+  Transaction ID: " + fs.readFileSync(txid));
+  });
+  bot.user.setPresence({game: {name: 'with the employees kids', type: 0}})
 
-fs.watchFile(address, function() { //wait 1 sec for all files to be updated.
-  const channel = bot.guilds.find('name', guildname).channels.find('name', channelname);
-  if (!channel) {
-    console.error("Cannot find the #" + channelname + " channel in the " + guildname + " guild!");
-    return;
-  }
-  channel.send("**New winner:** " + fs.readFileSync(address) + "\n\
-Balance: " + fs.readFileSync(balance) + "\n\
-Transaction ID: " + fs.readFileSync(txid));
 });
+
+
+
+
 
 bot.login(token);
