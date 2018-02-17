@@ -19,7 +19,11 @@ if (prod) {
 }
 
 bot.once('ready', ()=> {
-  fs.watchFile(address, function() {
+  fs.watchFile(txid, function() {
+
+    if (fs.readFileSync(txid) == "")
+      return;
+
     const channel = bot.guilds.find('name', guildname).channels.find('name', channelname);
     if (!channel) {
       console.error("Cannot find the #" + channelname + " channel in the " + guildname + " guild!");
@@ -32,9 +36,4 @@ bot.once('ready', ()=> {
   bot.user.setPresence({game: {name: 'with the employees kids', type: 0}})
 
 });
-
-
-
-
-
 bot.login(token);
