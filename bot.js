@@ -36,4 +36,12 @@ bot.once('ready', ()=> {
   bot.user.setPresence({game: {name: 'with the employees kids', type: 0}})
 
 });
+
+bot.on('guildMemberAdd', member =>{
+  const channel = member.guild.channels.find('name', 'general');
+  if (!channel) return;
+  channel.send(`Welcome to Garlic, Inc., ${member}!`);
+});
+
+
 bot.login(token);
