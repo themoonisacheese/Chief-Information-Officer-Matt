@@ -13,9 +13,9 @@ var txid = 'txid.txt';
 
 if (prod) {
   guildname = 'Garlic, Inc.';
-  address = '/root/unomp/website/pages/' + address;
-  balance = '/root/unomp/website/pages/' + balance;
-  txid = '/root/unomp/website/pages/' + txid;
+  address = '/root/pool/33.5-x86_64-unknown-linux-gnu/bin/giveaway/' + address;
+  balance = '/root/pool/33.5-x86_64-unknown-linux-gnu/bin/giveaway/' + balance;
+  txid = '/root/pool/33.5-x86_64-unknown-linux-gnu/bin/giveaway/' + txid;
 }
 
 bot.once('ready', ()=> {
